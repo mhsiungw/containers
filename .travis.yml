@@ -25,3 +25,15 @@ after_success:
   - docker push mhsiungw/multi-nginx
   - docker push mhsiungw/multi-server
   - docker push mhsiungw/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-northeast-1'
+  app: 'multi-docker'
+  env: 'Multidocker-env'
+  bucket_nane: 'elasticbeanstalk-ap-northeast-1-448633924354'
+  bucket_path: docker-multi
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
